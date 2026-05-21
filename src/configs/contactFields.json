@@ -1,0 +1,62 @@
+{
+  "folders": [
+    {
+      "id": "contact",
+      "name": "Contact",
+      "collapsible": true,
+      "addable": true,
+      "defaultOpen": true,
+      "fields": [
+        { "key": "firstName", "label": "First Name", "type": "text", "placeholder": "Enter first name" },
+        { "key": "lastName", "label": "Last Name", "type": "text", "placeholder": "Enter last name" },
+        { "key": "phone", "label": "Phone Number", "type": "phone", "placeholder": "(555) 000-0000" },
+        { "key": "email", "label": "Email", "type": "email", "placeholder": "name@example.com" },
+        { "key": "address", "label": "Address", "type": "address", "placeholder": "Street, City, ZIP" }
+      ]
+    },
+    {
+      "id": "additionalInfo",
+      "name": "Additional Info",
+      "collapsible": true,
+      "addable": true,
+      "defaultOpen": true,
+      "fields": [
+        { "key": "businessName", "label": "Business Name", "type": "text" },
+        { "key": "streetAddress", "label": "Street Address", "type": "text" },
+        { "key": "city", "label": "City", "type": "text" },
+        { "key": "country", "label": "Country", "type": "text" }
+      ]
+    },
+    {
+      "id": "usedCarBuyerPreferences",
+      "name": "Used Car Buyer Preferences",
+      "collapsible": true,
+      "addable": false,
+      "defaultOpen": false,
+      "fields": [
+        {
+          "key": "preferredMake",
+          "label": "Preferred Make",
+          "type": "multiSelect",
+          "options": [
+            { "label": "Toyota", "value": "toyota" },
+            { "label": "Honda", "value": "honda" },
+            { "label": "Ford", "value": "ford" },
+            { "label": "BMW", "value": "bmw" }
+          ]
+        },
+        {
+          "key": "budget",
+          "label": "Budget",
+          "type": "radio",
+          "options": [
+            { "label": "Under $10k", "value": "under10k" },
+            { "label": "$10k - $25k", "value": "10kto25k" },
+            { "label": "$25k - $50k", "value": "25kto50k" },
+            { "label": "$50k+", "value": "50kplus" }
+          ]
+        }
+      ]
+    }
+  ]
+}

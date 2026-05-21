@@ -1,0 +1,25 @@
+{
+  "sections": [
+    {
+      "id": "crm-sidebar",
+      "title": "Contact Folders",
+      "type": "sidebar",
+      "order": 1,
+      "className": "col-span-12 lg:col-span-3"
+    },
+    {
+      "id": "crm-main",
+      "title": "Contact Details",
+      "type": "main",
+      "order": 2,
+      "className": "col-span-12 lg:col-span-6"
+    },
+    {
+      "id": "crm-notes",
+      "title": "Notes & Timeline",
+      "type": "notes",
+      "order": 3,
+      "className": "col-span-12 lg:col-span-3"
+    }
+  ]
+}
