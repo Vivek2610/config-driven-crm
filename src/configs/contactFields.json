@@ -18,7 +18,7 @@
       "id": "additionalInfo",
       "name": "Additional Info",
       "collapsible": true,
-      "addable": true,
+      "addable": false,
       "defaultOpen": true,
       "fields": [
         { "key": "businessName", "label": "Business Name", "type": "text" },

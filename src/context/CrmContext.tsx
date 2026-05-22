@@ -34,6 +34,8 @@ interface CrmContextValue {
   setSearchTerm: (term: string) => void;
   setViewMode: (mode: ViewMode) => void;
   addContact: (contact: Omit<ContactRecord, 'id'>) => void;
+  // Merges a partial patch into the selected contact record.
+  updateContact: (patch: Partial<ContactRecord>) => void;
   addNote: (body: string) => void;
   // Appends an outbound message (email or chat) to the active contact's thread.
   sendConversation: (body: string, type: ConversationType, subject?: string) => void;
@@ -80,13 +82,11 @@ export const CrmProvider = ({
     () => buildConversationsMap(initialContacts),
   );
 
-  const [selectedContactId, setSelectedContactId] = useState<number | null>(
-    initialContacts[0]?.id ?? null,
-  );
+  const [selectedContactId, setSelectedContactId] = useState<number | null>(null);
   const [activeTab, setActiveTab] = useState<ContactTab>('allFields');
   const [openFolders, setOpenFolders] = useState<Record<string, boolean>>(initialOpenFolders);
   const [searchTerm, setSearchTerm] = useState('');
-  const [viewMode, setViewMode] = useState<ViewMode>('detail');
+  const [viewMode, setViewMode] = useState<ViewMode>('list');
 
   const selectedContact = useMemo(
     () => contacts.find((c) => c.id === selectedContactId) ?? null,
@@ -122,6 +122,16 @@ export const CrmProvider = ({
       return [...prev, created];
     });
   }, []);
+
+  const updateContact = useCallback(
+    (patch: Partial<ContactRecord>) => {
+      if (selectedContactId === null) return;
+      setContacts((prev) =>
+        prev.map((c) => (c.id === selectedContactId ? { ...c, ...patch } : c)),
+      );
+    },
+    [selectedContactId],
+  );
 
   const addNote = useCallback(
     (body: string) => {
@@ -223,6 +233,7 @@ export const CrmProvider = ({
       setSearchTerm,
       setViewMode,
       addContact,
+      updateContact,
       addNote,
       sendConversation,
       toggleConversationStar,
@@ -242,6 +253,7 @@ export const CrmProvider = ({
       selectedContactConversations,
       toggleFolder,
       addContact,
+      updateContact,
       addNote,
       sendConversation,
       toggleConversationStar,

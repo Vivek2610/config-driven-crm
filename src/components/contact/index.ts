@@ -1,6 +1,7 @@
 export * from './AddContactModal';
 export * from './ContactDetailsHeader';
 export * from './ContactField';
+export * from './EditableContactField';
 export * from './ContactFolder';
 export * from './ContactList';
 export * from './ContactListItem';

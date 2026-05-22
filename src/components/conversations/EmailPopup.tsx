@@ -37,7 +37,9 @@ export const EmailPopup = memo(({ email, onClose }: EmailPopupProps) => {
         className="flex max-h-[85vh] w-full max-w-2xl flex-col overflow-hidden rounded-xl bg-white shadow-2xl"
       >
         <header className="flex items-start justify-between gap-3 border-b border-slate-200 px-5 py-3">
-          <h3 className="text-base font-semibold text-slate-900">{email.subject}</h3>
+          <h3 className="min-w-0 flex-1 break-words text-base font-semibold leading-snug text-slate-900">
+            {email.subject}
+          </h3>
           <button
             type="button"
             onClick={onClose}

@@ -20,17 +20,17 @@ export const ChatBubble = memo(({ chat }: ChatBubbleProps) => {
 
   if (isInbound) {
     return (
-      <div className="flex items-end gap-2">
+      <div className="flex items-start gap-2">
         <span
-          className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-[10px] font-semibold text-white"
+          className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-[11px] font-semibold text-white shadow-sm"
           style={{ backgroundColor: `hsl(${hue} 55% 50%)` }}
         >
           {getInitials(avatarName)}
         </span>
-        <div className="max-w-[75%] rounded-2xl rounded-bl-sm bg-slate-100 px-3 py-2">
-          <p className="text-xs font-semibold text-slate-500">{chat.sender.name}</p>
-          <p className="mt-0.5 text-sm text-slate-800">{chat.body}</p>
-          <p className="mt-1 text-[10px] text-slate-500">{formatClockTime(chat.createdAt)}</p>
+        <div className="relative max-w-[75%] rounded-xl bg-[#fff3e4] px-3.5 py-2.5 shadow-sm before:absolute before:-left-2 before:top-3.5 before:block before:h-0 before:w-0 before:content-[''] before:border-y-[7px] before:border-r-[8px] before:border-l-0 before:border-y-transparent before:border-r-[#fff3e4]">
+          <p className="text-xs font-semibold text-slate-600">{chat.sender.name}</p>
+          <p className="mt-0.5 text-sm leading-snug text-slate-800">{chat.body}</p>
+          <p className="mt-1.5 text-[10px] text-slate-400">{formatClockTime(chat.createdAt)}</p>
         </div>
       </div>
     );
