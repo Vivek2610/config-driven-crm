@@ -8,6 +8,7 @@ import {
 } from 'react';
 
 import type {
+  ContactFieldsConfig,
   ContactRecord,
   ContactTab,
   Conversation,
@@ -19,6 +20,7 @@ export type ViewMode = 'list' | 'detail';
 
 interface CrmContextValue {
   contacts: ContactRecord[];
+  fieldsConfig: ContactFieldsConfig;
   selectedContactId: number | null;
   selectedContact: ContactRecord | null;
   selectedIndex: number;
@@ -49,6 +51,7 @@ const CrmContext = createContext<CrmContextValue | undefined>(undefined);
 
 interface CrmProviderProps {
   initialContacts: ContactRecord[];
+  fieldsConfig: ContactFieldsConfig;
   initialOpenFolders?: Record<string, boolean>;
   children: ReactNode;
 }
@@ -70,6 +73,7 @@ const buildConversationsMap = (
 // Centralized CRM state. Notes & conversations are scoped per contact.
 export const CrmProvider = ({
   initialContacts,
+  fieldsConfig,
   initialOpenFolders = {},
   children,
 }: CrmProviderProps) => {
@@ -218,6 +222,7 @@ export const CrmProvider = ({
   const value = useMemo<CrmContextValue>(
     () => ({
       contacts,
+      fieldsConfig,
       selectedContactId,
       selectedContact,
       selectedIndex,
@@ -242,6 +247,7 @@ export const CrmProvider = ({
     }),
     [
       contacts,
+      fieldsConfig,
       selectedContactId,
       selectedContact,
       selectedIndex,

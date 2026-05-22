@@ -1,7 +1,11 @@
 // Centralized config exports for config-driven rendering.
+import type { LayoutDefinition } from '@/types';
+
 import contactData from './contactData.json';
 import contactFields from './contactFields.json';
-import layout from './layout.json';
+import layoutJson from './layout.json';
 import notes from './notes.json';
+
+const layout = layoutJson as LayoutDefinition;
 
 export { contactData, contactFields, layout, notes };

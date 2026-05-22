@@ -1,13 +1,13 @@
 import { memo } from 'react';
 
-interface NavBarProps {
-  notesOpen: boolean;
-  onToggleNotes: () => void;
-}
+import { useUiLayout } from '@/context';
 
 // Thin icon-only right navigation rail with 5 items.
-// The 4th item (Notes) is the only interactive toggle; others are placeholders.
-export const NavBar = memo(({ notesOpen, onToggleNotes }: NavBarProps) => {
+// Pulls notes-toggle state from UiLayoutContext so the rail can drop into any
+// layout without prop drilling.
+export const NavBar = memo(() => {
+  const { notesOpen, toggleNotes } = useUiLayout();
+  const onToggleNotes = toggleNotes;
   const navItems = [
     {
       id: 'contacts',

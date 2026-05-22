@@ -10,19 +10,73 @@ export type FieldType =
   | 'tags'
   | 'avatarSelect';
 
-export type LayoutSectionType = 'sidebar' | 'main' | 'notes';
+export type LayoutMode = 'desktop' | 'tablet' | 'mobile';
 
+export type SectionMode = 'inline' | 'drawer' | 'page';
+
+export type LayoutContainerType = 'flex' | 'grid' | 'stack';
+
+export type NavPosition = 'right' | 'left' | 'bottom' | 'top' | 'hidden';
+
+export type DrawerPosition = 'right' | 'left' | 'bottom' | 'top';
+
+// Single layout section in the config (e.g. Sidebar/Main/Notes).
 export interface LayoutSection {
   id: string;
-  title: string;
-  type: LayoutSectionType;
-  order: number;
-  className: string;
+  component: string;
+  width?: string;
+  minWidth?: string;
+  maxWidth?: string;
+  height?: string;
+  flex?: number;
+  visible?: boolean;
+  order?: number;
+  mode?: SectionMode;
 }
 
-export interface LayoutConfig {
-  sections: LayoutSection[];
+export interface DrawerConfig {
+  position: DrawerPosition;
+  width?: string;
+  height?: string;
+  overlay?: boolean;
 }
+
+export interface LayoutBreakpoints {
+  mobile: number;
+  tablet: number;
+}
+
+export interface DesktopLayoutConfig {
+  type: LayoutContainerType;
+  navPosition: NavPosition;
+  sections: LayoutSection[];
+  drawer?: DrawerConfig;
+}
+
+export interface TabletLayoutConfig extends DesktopLayoutConfig {
+  drawer?: DrawerConfig;
+}
+
+export interface MobileLayoutConfig {
+  type: LayoutContainerType;
+  navPosition: NavPosition;
+  defaultSection: string;
+  sections: LayoutSection[];
+  drawer?: DrawerConfig;
+}
+
+// Root layout definition — sourced from layout.json.
+export interface LayoutDefinition {
+  breakpoints: LayoutBreakpoints;
+  desktop: DesktopLayoutConfig;
+  tablet: TabletLayoutConfig;
+  mobile: MobileLayoutConfig;
+}
+
+export type LayoutModeConfig =
+  | DesktopLayoutConfig
+  | TabletLayoutConfig
+  | MobileLayoutConfig;
 
 export interface ContactFieldOption {
   label: string;

@@ -1,15 +1,20 @@
 import { memo, useRef, useState } from 'react';
 
 import { NotesList } from '@/components/notes';
-import { useCrm } from '@/context';
+import { useCrm, useUiLayout } from '@/context';
 
 interface NotesPanelProps {
-  onClose: () => void;
+  // Optional explicit close handler. Falls back to UiLayoutContext.closeNotes
+  // so the panel works whether it's rendered inline or inside a drawer.
+  onClose?: () => void;
+  // Hides the close (×) button — useful when the parent drawer already shows one.
+  hideCloseButton?: boolean;
 }
 
-// Right-side notes panel with add, close, and sticky-card display.
-export const NotesPanel = memo(({ onClose }: NotesPanelProps) => {
+export const NotesPanel = memo(({ onClose, hideCloseButton }: NotesPanelProps = {}) => {
   const { selectedContactNotes: notes, addNote } = useCrm();
+  const { closeNotes } = useUiLayout();
+  const handleClose = onClose ?? closeNotes;
   const [composing, setComposing] = useState(false);
   const [draft, setDraft] = useState('');
   const textareaRef = useRef<HTMLTextAreaElement>(null);
@@ -49,17 +54,21 @@ export const NotesPanel = memo(({ onClose }: NotesPanelProps) => {
             </svg>
             Add
           </button>
-          <div className="h-4 w-px bg-slate-200" />
-          <button
-            type="button"
-            onClick={onClose}
-            className="rounded-md p-1 text-slate-400 transition hover:bg-slate-100 hover:text-slate-700"
-            title="Close notes panel"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="h-4 w-4">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
-            </svg>
-          </button>
+          {!hideCloseButton && (
+            <>
+              <div className="h-4 w-px bg-slate-200" />
+              <button
+                type="button"
+                onClick={handleClose}
+                className="rounded-md p-1 text-slate-400 transition hover:bg-slate-100 hover:text-slate-700"
+                title="Close notes panel"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="h-4 w-4">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </>
+          )}
         </div>
       </header>
 

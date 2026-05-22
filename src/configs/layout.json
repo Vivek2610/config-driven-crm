@@ -1,25 +1,108 @@
 {
-  "sections": [
-    {
-      "id": "crm-sidebar",
-      "title": "Contact Folders",
-      "type": "sidebar",
-      "order": 1,
-      "className": "col-span-12 lg:col-span-3"
-    },
-    {
-      "id": "crm-main",
-      "title": "Contact Details",
-      "type": "main",
-      "order": 2,
-      "className": "col-span-12 lg:col-span-6"
-    },
-    {
-      "id": "crm-notes",
-      "title": "Notes & Timeline",
-      "type": "notes",
-      "order": 3,
-      "className": "col-span-12 lg:col-span-3"
+  "breakpoints": {
+    "mobile": 768,
+    "tablet": 1024
+  },
+  "desktop": {
+    "type": "flex",
+    "navPosition": "right",
+    "sections": [
+      {
+        "id": "sidebar",
+        "component": "Sidebar",
+        "width": "320px",
+        "minWidth": "280px",
+        "visible": true,
+        "order": 1,
+        "mode": "inline"
+      },
+      {
+        "id": "main",
+        "component": "MainPanel",
+        "flex": 1,
+        "minWidth": "0",
+        "visible": true,
+        "order": 2,
+        "mode": "inline"
+      },
+      {
+        "id": "notes",
+        "component": "NotesPanel",
+        "width": "288px",
+        "minWidth": "260px",
+        "visible": true,
+        "order": 3,
+        "mode": "inline"
+      }
+    ]
+  },
+  "tablet": {
+    "type": "flex",
+    "navPosition": "right",
+    "sections": [
+      {
+        "id": "sidebar",
+        "component": "Sidebar",
+        "width": "300px",
+        "minWidth": "260px",
+        "visible": true,
+        "order": 1,
+        "mode": "inline"
+      },
+      {
+        "id": "main",
+        "component": "MainPanel",
+        "flex": 1,
+        "minWidth": "0",
+        "visible": true,
+        "order": 2,
+        "mode": "inline"
+      },
+      {
+        "id": "notes",
+        "component": "NotesPanel",
+        "visible": true,
+        "order": 3,
+        "mode": "drawer"
+      }
+    ],
+    "drawer": {
+      "position": "right",
+      "width": "380px",
+      "overlay": true
     }
-  ]
+  },
+  "mobile": {
+    "type": "stack",
+    "navPosition": "bottom",
+    "defaultSection": "main",
+    "sections": [
+      {
+        "id": "sidebar",
+        "component": "Sidebar",
+        "visible": true,
+        "order": 1,
+        "mode": "page"
+      },
+      {
+        "id": "main",
+        "component": "MainPanel",
+        "visible": true,
+        "order": 2,
+        "mode": "page"
+      },
+      {
+        "id": "notes",
+        "component": "NotesPanel",
+        "visible": true,
+        "order": 3,
+        "mode": "drawer"
+      }
+    ],
+    "drawer": {
+      "position": "bottom",
+      "height": "85vh",
+      "overlay": true
+    }
+  }
 }

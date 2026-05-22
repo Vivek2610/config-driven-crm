@@ -12,12 +12,14 @@ import { useCrm } from '@/context';
 import type { ContactFieldsConfig } from '@/types';
 
 interface SidebarProps {
-  fieldsConfig: ContactFieldsConfig;
+  fieldsConfig?: ContactFieldsConfig;
 }
 
 // Composes the entire contact-details sidebar from config-driven sub-components.
-export const Sidebar = memo(({ fieldsConfig }: SidebarProps) => {
-  const { selectedContact, activeTab, searchTerm, viewMode } = useCrm();
+// Pulls fieldsConfig from CrmContext when no prop is provided (registry-friendly).
+export const Sidebar = memo(({ fieldsConfig: fieldsConfigProp }: SidebarProps = {}) => {
+  const { selectedContact, activeTab, searchTerm, viewMode, fieldsConfig: ctxFieldsConfig } = useCrm();
+  const fieldsConfig = fieldsConfigProp ?? ctxFieldsConfig;
 
   // Dynamic filter: filter both folder names and field labels by the search term.
   const filteredFolders = useMemo(() => {
@@ -39,19 +41,23 @@ export const Sidebar = memo(({ fieldsConfig }: SidebarProps) => {
   }, [fieldsConfig.folders, searchTerm]);
 
   if (viewMode === 'list') {
-    return <ContactList />;
+    return (
+      <div className="h-full overflow-hidden rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+        <ContactList />
+      </div>
+    );
   }
 
   if (!selectedContact) {
     return (
-      <div className="flex h-full items-center justify-center text-sm text-slate-500">
+      <div className="flex h-full items-center justify-center rounded-xl border border-slate-200 bg-white text-sm text-slate-500 shadow-sm">
         Select a contact to view details.
       </div>
     );
   }
 
   return (
-    <div className="flex h-full flex-col">
+    <div className="flex h-full flex-col overflow-hidden rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
       <ContactDetailsHeader />
 
       <div className="mt-3 space-y-3">
