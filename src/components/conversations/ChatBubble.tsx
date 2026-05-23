@@ -28,7 +28,7 @@ export const ChatBubble = memo(({ chat }: ChatBubbleProps) => {
           {getInitials(avatarName)}
         </span>
         <div className="relative max-w-[75%] rounded-xl bg-[#fff3e4] px-3.5 py-2.5 shadow-sm before:absolute before:-left-2 before:top-3.5 before:block before:h-0 before:w-0 before:content-[''] before:border-y-[7px] before:border-r-[8px] before:border-l-0 before:border-y-transparent before:border-r-[#fff3e4]">
-          <p className="text-xs font-semibold text-slate-600">{chat.sender.name}</p>
+          <p className="text-xs font-semibold text-slate-600">{contactDisplayName}</p>
           <p className="mt-0.5 text-sm leading-snug text-slate-800">{chat.body}</p>
           <p className="mt-1.5 text-[10px] text-slate-400">{formatClockTime(chat.createdAt)}</p>
         </div>

@@ -26,6 +26,11 @@ export const EmailPopup = memo(({ email, onClose }: EmailPopupProps) => {
     ? `${selectedContact.firstName} ${selectedContact.lastName}`.trim()
     : email.sender.name;
   const avatarName = email.direction === 'inbound' ? contactDisplayName : email.sender.name;
+  const senderLabel = email.direction === 'inbound' ? contactDisplayName : email.sender.name;
+  const toLabel =
+    email.direction === 'outbound' && selectedContact
+      ? `${selectedContact.firstName} ${selectedContact.lastName}`.trim()
+      : email.to;
   const hue = getAvatarHue(avatarName);
 
   return (
@@ -59,8 +64,8 @@ export const EmailPopup = memo(({ email, onClose }: EmailPopupProps) => {
             {getInitials(avatarName)}
           </span>
           <div className="flex-1">
-            <p className="text-sm font-semibold text-slate-900">{email.sender.name}</p>
-            <p className="text-xs text-slate-500">To: {email.to}</p>
+            <p className="text-sm font-semibold text-slate-900">{senderLabel}</p>
+            <p className="text-xs text-slate-500">To: {toLabel}</p>
           </div>
           <span className="text-xs text-slate-500">{formatRelativeTime(email.createdAt)}</span>
         </div>
