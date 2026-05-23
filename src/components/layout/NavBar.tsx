@@ -12,13 +12,22 @@ import { useUiLayout } from '@/context';
 const iconClass = 'h-5 w-5';
 const iconStroke = 1.6;
 
-const tooltipClass =
-  'pointer-events-none absolute right-full top-1/2 z-10 mr-2 -translate-y-1/2 whitespace-nowrap rounded-md bg-slate-900 px-2 py-1 text-xs font-medium text-white opacity-0 shadow-sm transition-opacity duration-150 group-hover:opacity-100 group-focus-within:opacity-100';
+interface NavBarProps {
+  /** Rail position — tooltips flip to the opposite side. */
+  position?: 'left' | 'right';
+}
 
-// Thin icon-only right navigation rail with 5 items.
+const tooltipClasses: Record<'left' | 'right', string> = {
+  right:
+    'pointer-events-none absolute right-full top-1/2 z-10 mr-2 -translate-y-1/2 whitespace-nowrap rounded-md bg-slate-900 px-2 py-1 text-xs font-medium text-white opacity-0 shadow-sm transition-opacity duration-150 group-hover:opacity-100 group-focus-within:opacity-100',
+  left:
+    'pointer-events-none absolute left-full top-1/2 z-10 ml-2 -translate-y-1/2 whitespace-nowrap rounded-md bg-slate-900 px-2 py-1 text-xs font-medium text-white opacity-0 shadow-sm transition-opacity duration-150 group-hover:opacity-100 group-focus-within:opacity-100',
+};
+
+// Thin icon-only navigation rail with 5 items.
 // Pulls notes-toggle state from UiLayoutContext so the rail can drop into any
 // layout without prop drilling.
-export const NavBar = memo(() => {
+export const NavBar = memo(({ position = 'right' }: NavBarProps) => {
   const { notesOpen, toggleNotes } = useUiLayout();
   const onToggleNotes = toggleNotes;
   const navItems = [
@@ -78,7 +87,7 @@ export const NavBar = memo(() => {
             >
               {item.icon}
             </button>
-            <span role="tooltip" className={tooltipClass}>
+            <span role="tooltip" className={tooltipClasses[position]}>
               {item.label}
             </span>
           </div>

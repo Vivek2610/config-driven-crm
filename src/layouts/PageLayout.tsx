@@ -49,6 +49,8 @@ const DesktopShell = memo(({ layout }: ShellProps) => {
         : 'flex flex-1 flex-col gap-5 overflow-hidden';
 
   const notesDrawerSection = drawerSections.find((s) => s.id === 'notes');
+  const showLeftNav = navPosition === 'left';
+  const showRightNav = navPosition === 'right';
 
   // For inline-mode notes (desktop), filter by notesOpen so the NavBar toggle works.
   const visibleInlineSections = inlineSections.filter(
@@ -57,15 +59,17 @@ const DesktopShell = memo(({ layout }: ShellProps) => {
 
   return (
     <div className="flex h-full w-full flex-1 gap-4 overflow-hidden">
+      {showLeftNav && <NavBar position="left" />}
+
       <div className={containerClass}>
         {visibleInlineSections.map((section) => (
           <SectionRenderer key={section.id} section={section} />
         ))}
       </div>
 
-      {navPosition === 'right' && <NavBar />}
+      {showRightNav && <NavBar position="right" />}
 
-      {/* Drawer-mode notes for tablet */}
+      {/* Drawer-mode sections (e.g. notes on tablet or alternate desktop layouts) */}
       {notesDrawerSection && (
         <ResponsiveDrawer
           open={notesOpen}
