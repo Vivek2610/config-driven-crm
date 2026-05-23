@@ -1,3 +1,4 @@
+import { X } from 'lucide-react';
 import { memo, useEffect, useMemo, useState, type FormEvent } from 'react';
 
 import { useCrm } from '@/context';
@@ -47,9 +48,7 @@ export const AddContactModal = memo(({ onClose }: AddContactModalProps) => {
             onClick={onClose}
             className="rounded-md p-1 text-slate-500 hover:bg-slate-100 hover:text-slate-700"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="h-4 w-4">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
-            </svg>
+            <X className="h-4 w-4" strokeWidth={2} />
           </button>
         </header>
 

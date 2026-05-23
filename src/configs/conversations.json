@@ -1,0 +1,76 @@
+{
+  "conversationsByContactId": {
+    "1": [
+      {
+        "id": "c1-1",
+        "type": "email",
+        "direction": "inbound",
+        "subject": "Set up a new time to follow up on the mail chain issue that we talked about the other day regarding the shipment delay and order tracking",
+        "to": "Me",
+        "body": "Hey John,\n\nYou Order has reached.\nYour Urban Wellness LLP order has arrived in your city, Click the button below to track your order in real-time. Arriving on Tuesday, November 19th.",
+        "threadCount": 3,
+        "starred": true,
+        "trackUrl": "#",
+        "sender": { "name": "Olivia John" },
+        "createdAt": "2026-05-22T08:00:00.000Z"
+      },
+      {
+        "id": "c1-2",
+        "type": "chat",
+        "direction": "inbound",
+        "body": "Please let me know",
+        "sender": { "name": "Olivia" },
+        "createdAt": "2026-05-22T08:15:00.000Z"
+      },
+      {
+        "id": "c1-3",
+        "type": "email",
+        "direction": "inbound",
+        "subject": "Set up a new time to follow up on the mail chain issue that we talked about the other day regarding the shipment delay and order tracking",
+        "to": "Me",
+        "body": "Hey John,\n\nYou Order has reached.\nYour Urban Wellness LLP order has arrived in your city, Click the button below to track your order in real-time. Arriving on Tuesday, November 19th.",
+        "threadCount": 3,
+        "starred": true,
+        "trackUrl": "#",
+        "sender": { "name": "Olivia John" },
+        "createdAt": "2026-05-22T08:25:00.000Z"
+      }
+    ],
+    "2": [
+      {
+        "id": "c2-1",
+        "type": "email",
+        "direction": "inbound",
+        "subject": "Fleet pricing follow-up for Northwind Ventures",
+        "to": "Me",
+        "body": "Hi team,\n\nFollowing up on the fleet pricing options we discussed last week. Could you share the volume discount sheet for 5+ units?\n\nThanks,\nMarcus",
+        "threadCount": 2,
+        "starred": false,
+        "sender": { "name": "Marcus Reed" },
+        "createdAt": "2026-05-20T10:30:00.000Z"
+      },
+      {
+        "id": "c2-2",
+        "type": "chat",
+        "direction": "inbound",
+        "body": "Got a minute to discuss the contract?",
+        "sender": { "name": "Marcus" },
+        "createdAt": "2026-05-20T15:00:00.000Z"
+      }
+    ],
+    "3": [
+      {
+        "id": "c3-1",
+        "type": "email",
+        "direction": "inbound",
+        "subject": "Demo request for the enterprise dashboard",
+        "to": "Me",
+        "body": "Hi,\n\nWould love to see a demo of the enterprise dashboard. Wednesday 2PM PST works for our team. Please include our CTO on the invite.\n\nBest,\nSara",
+        "starred": true,
+        "sender": { "name": "Sara Patel" },
+        "createdAt": "2026-05-19T09:00:00.000Z"
+      }
+    ],
+    "4": []
+  }
+}

@@ -1,3 +1,4 @@
+import { ArrowLeft, ChevronLeft, ChevronRight } from 'lucide-react';
 import { memo } from 'react';
 
 import { useCrm } from '@/context';
@@ -16,9 +17,7 @@ export const ContactDetailsHeader = memo(() => {
         onClick={() => setViewMode('list')}
         className="flex items-center gap-1.5 text-sm font-semibold text-slate-900 transition hover:text-blue-600"
       >
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="h-4 w-4">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
-        </svg>
+        <ArrowLeft className="h-4 w-4" strokeWidth={2} />
         Contact Details
       </button>
 
@@ -32,9 +31,7 @@ export const ContactDetailsHeader = memo(() => {
           disabled={!canPrev}
           className="rounded-md p-1 text-slate-500 transition hover:bg-slate-100 hover:text-slate-700 disabled:cursor-not-allowed disabled:opacity-40"
         >
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="h-4 w-4">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
-          </svg>
+          <ChevronLeft className="h-4 w-4" strokeWidth={2} />
         </button>
         <button
           type="button"
@@ -42,9 +39,7 @@ export const ContactDetailsHeader = memo(() => {
           disabled={!canNext}
           className="rounded-md p-1 text-slate-500 transition hover:bg-slate-100 hover:text-slate-700 disabled:cursor-not-allowed disabled:opacity-40"
         >
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="h-4 w-4">
-            <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
-          </svg>
+          <ChevronRight className="h-4 w-4" strokeWidth={2} />
         </button>
       </div>
     </header>

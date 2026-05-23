@@ -1,22 +1,47 @@
 {
-  "notes": [
-    {
-      "id": "note-1",
-      "body": "@Aaron Site Inspection completed. Heavy moss buildup on north side, moderate algae staining. Customer very satisfied with quote presentation. Chose Premium package. Payment processed via credit card. Mentioned neighbor also needs service.",
-      "createdAt": "2026-05-21T08:00:00.000Z",
-      "author": "Aaron"
-    },
-    {
-      "id": "note-2",
-      "body": "Customer mentioned that his pet has anxiety issues during grooming. Requested a specific time slot with less crowd. Make sure to allocate a calm handler for the session.",
-      "createdAt": "2026-05-21T08:15:00.000Z",
-      "author": "Devon"
-    },
-    {
-      "id": "note-3",
-      "body": "Discussed package upgrade options. Customer is considering the premium monthly grooming plan. Follow up in one week to check on their decision and offer any needed clarification, unless there is a change in course.",
-      "createdAt": "2026-05-21T08:30:00.000Z",
-      "author": "Devon"
-    }
-  ]
+  "notesByContactId": {
+    "1": [
+      {
+        "id": "n1-1",
+        "body": "@Aaron Site Inspection completed. Heavy moss buildup on north side, moderate algae staining. Customer very satisfied with quote presentation. Chose Premium package. Payment processed via credit card. Mentioned neighbor also needs service.",
+        "createdAt": "2026-05-21T08:00:00.000Z",
+        "author": "Aaron"
+      },
+      {
+        "id": "n1-2",
+        "body": "Customer mentioned that his pet has anxiety issues during grooming. Requested a specific time slot with less crowd. Make sure to allocate a calm handler for the session.",
+        "createdAt": "2026-05-21T08:15:00.000Z",
+        "author": "Devon"
+      },
+      {
+        "id": "n1-3",
+        "body": "Discussed package upgrade options. Customer is considering the premium monthly grooming plan. Follow up in one week to check on their decision and offer any needed clarification, unless there is a change in course.",
+        "createdAt": "2026-05-21T08:30:00.000Z",
+        "author": "Devon"
+      }
+    ],
+    "2": [
+      {
+        "id": "n2-1",
+        "body": "Marcus confirmed interest in fleet pricing for 5 vehicles. Follow up with volume discount sheet by end of week.",
+        "createdAt": "2026-05-20T10:00:00.000Z",
+        "author": "Aria"
+      },
+      {
+        "id": "n2-2",
+        "body": "Legal review of contract in progress. Expects sign-off by next Tuesday. CC procurement lead on all future emails.",
+        "createdAt": "2026-05-20T14:30:00.000Z",
+        "author": "Aria"
+      }
+    ],
+    "3": [
+      {
+        "id": "n3-1",
+        "body": "Sara requested a demo of the enterprise dashboard. Scheduled for next Wednesday 2PM PST. Send calendar invite to her and her CTO.",
+        "createdAt": "2026-05-19T09:00:00.000Z",
+        "author": "Jordan"
+      }
+    ],
+    "4": []
+  }
 }

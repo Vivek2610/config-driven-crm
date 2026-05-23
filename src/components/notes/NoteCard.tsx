@@ -18,11 +18,11 @@ const relativeTime = (isoDate: string): string => {
   return `${diffDays} day${diffDays > 1 ? 's' : ''} ago`;
 };
 
-// Sticky-note style card matching the screenshot: warm yellow-cream background, no border.
+// Sticky-note style card: warm yellow-cream background with a subtle darker border.
 export const NoteCard = memo(({ note }: NoteCardProps) => (
   <article
-    className="rounded-lg px-4 py-3"
-    style={{ backgroundColor: '#FFFBEB' }}
+    className="rounded-lg border px-4 py-3"
+    style={{ backgroundColor: '#FFFBEB', borderColor: '#F0E2B8' }}
   >
     {/* Render @mentions in blue, rest as plain text */}
     <p className="text-sm leading-relaxed text-slate-700">

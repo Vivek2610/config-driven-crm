@@ -1,7 +1,6 @@
 import {
   createContext,
   useCallback,
-  useContext,
   useEffect,
   useMemo,
   useState,
@@ -27,6 +26,8 @@ interface UiLayoutContextValue {
 }
 
 const UiLayoutContext = createContext<UiLayoutContextValue | undefined>(undefined);
+
+export { UiLayoutContext };
 
 const getLayoutMode = (): LayoutMode => {
   if (typeof window === 'undefined') return 'desktop';
@@ -93,10 +94,4 @@ export const UiLayoutProvider = ({ children }: UiLayoutProviderProps) => {
   );
 
   return <UiLayoutContext.Provider value={value}>{children}</UiLayoutContext.Provider>;
-};
-
-export const useUiLayout = (): UiLayoutContextValue => {
-  const ctx = useContext(UiLayoutContext);
-  if (!ctx) throw new Error('useUiLayout must be used within a UiLayoutProvider');
-  return ctx;
 };

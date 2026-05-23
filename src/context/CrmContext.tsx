@@ -1,7 +1,6 @@
 import {
   createContext,
   useCallback,
-  useContext,
   useMemo,
   useState,
   type ReactNode,
@@ -48,6 +47,8 @@ interface CrmContextValue {
 }
 
 const CrmContext = createContext<CrmContextValue | undefined>(undefined);
+
+export { CrmContext };
 
 interface CrmProviderProps {
   initialContacts: ContactRecord[];
@@ -269,10 +270,4 @@ export const CrmProvider = ({
   );
 
   return <CrmContext.Provider value={value}>{children}</CrmContext.Provider>;
-};
-
-export const useCrm = (): CrmContextValue => {
-  const ctx = useContext(CrmContext);
-  if (!ctx) throw new Error('useCrm must be used within a CrmProvider');
-  return ctx;
 };

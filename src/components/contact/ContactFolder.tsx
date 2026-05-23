@@ -1,3 +1,4 @@
+import { ChevronUp, Pencil, Plus } from 'lucide-react';
 import { memo, useState } from 'react';
 
 import { useCrm } from '@/context';
@@ -66,9 +67,7 @@ export const ContactFolder = memo(({ folder, fields, contact }: ContactFolderPro
                   aria-label={`Add to ${folder.name}`}
                   className="rounded-md p-1 text-blue-600 transition hover:bg-blue-50"
                 >
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="h-4 w-4">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-                  </svg>
+                  <Plus className="h-4 w-4" strokeWidth={2} />
                 </button>
               )}
 
@@ -80,9 +79,7 @@ export const ContactFolder = memo(({ folder, fields, contact }: ContactFolderPro
                 aria-label="Edit fields"
                 className="rounded-md p-1 text-slate-500 transition hover:bg-slate-100 hover:text-slate-700"
               >
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.6} stroke="currentColor" className="h-4 w-4">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Z" />
-                </svg>
+                <Pencil className="h-4 w-4" strokeWidth={1.6} />
               </button>
             </>
           ) : (
@@ -112,16 +109,10 @@ export const ContactFolder = memo(({ folder, fields, contact }: ContactFolderPro
               className="rounded-md p-1 text-slate-500 transition hover:bg-slate-100 hover:text-slate-700"
               aria-label={isOpen ? 'Collapse' : 'Expand'}
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.8}
-                stroke="currentColor"
+              <ChevronUp
                 className={['h-4 w-4 transition-transform duration-200', isOpen ? '' : '-rotate-90'].join(' ')}
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 15.75 7.5-7.5 7.5 7.5" />
-              </svg>
+                strokeWidth={1.8}
+              />
             </button>
           )}
         </div>

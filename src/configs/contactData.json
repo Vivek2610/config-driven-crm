@@ -6,75 +6,16 @@
       "lastName": "John",
       "phone": "(555) 123-4567",
       "email": "olivia.perry@example.com",
-      "address": "123 Maple Street, Springfield. IL 62704. USA.",
+      "address": "123 Maple Street, Springfield, IL 62704. USA.",
       "businessName": "ABC Corp",
       "streetAddress": "123 Main Street",
       "city": "Springfield",
       "country": "United States",
       "preferredMake": ["toyota", "honda"],
       "budget": "25kto50k",
-      "owner": { "id": 1, "name": "Devon Lane" },
-      "followers": [
-        { "id": 1, "name": "Aaron" },
-        { "id": 2, "name": "Bella" }
-      ],
-      "tags": ["Shared Contact", "VIP", "+15"],
-      "notes": [
-        {
-          "id": "n1-1",
-          "body": "@Aaron Site Inspection completed. Heavy moss buildup on north side, moderate algae staining. Customer very satisfied with quote presentation. Chose Premium package. Payment processed via credit card. Mentioned neighbor also needs service.",
-          "createdAt": "2026-05-21T08:00:00.000Z",
-          "author": "Aaron"
-        },
-        {
-          "id": "n1-2",
-          "body": "Customer mentioned that his pet has anxiety issues during grooming. Requested a specific time slot with less crowd. Make sure to allocate a calm handler for the session.",
-          "createdAt": "2026-05-21T08:15:00.000Z",
-          "author": "Devon"
-        },
-        {
-          "id": "n1-3",
-          "body": "Discussed package upgrade options. Customer is considering the premium monthly grooming plan. Follow up in one week to check on their decision and offer any needed clarification, unless there is a change in course.",
-          "createdAt": "2026-05-21T08:30:00.000Z",
-          "author": "Devon"
-        }
-      ],
-      "conversations": [
-        {
-          "id": "c1-1",
-          "type": "email",
-          "direction": "inbound",
-          "subject": "Set up a new time to follow up on the mail chain issue that we talked about the other day regarding the shipment delay and order tracking",
-          "to": "Me",
-          "body": "Hey John,\n\nYou Order has reached.\nYour Urban Wellness LLP order has arrived in your city, Click the button below to track your order in real-time. Arriving on Tuesday, November 19th.",
-          "threadCount": 3,
-          "starred": true,
-          "trackUrl": "#",
-          "sender": { "name": "Olivia John" },
-          "createdAt": "2026-05-22T08:00:00.000Z"
-        },
-        {
-          "id": "c1-2",
-          "type": "chat",
-          "direction": "inbound",
-          "body": "Please let me know",
-          "sender": { "name": "Olivia" },
-          "createdAt": "2026-05-22T08:15:00.000Z"
-        },
-        {
-          "id": "c1-3",
-          "type": "email",
-          "direction": "inbound",
-          "subject": "Set up a new time to follow up on the mail chain issue that we talked about the other day regarding the shipment delay and order tracking",
-          "to": "Me",
-          "body": "Hey John,\n\nYou Order has reached.\nYour Urban Wellness LLP order has arrived in your city, Click the button below to track your order in real-time. Arriving on Tuesday, November 19th.",
-          "threadCount": 3,
-          "starred": true,
-          "trackUrl": "#",
-          "sender": { "name": "Olivia John" },
-          "createdAt": "2026-05-22T08:25:00.000Z"
-        }
-      ]
+      "owner": "Devon Lane",
+      "followers": ["Aaron", "Bella"],
+      "tags": ["Shared Contact", "VIP"]
     },
     {
       "id": 2,
@@ -82,52 +23,16 @@
       "lastName": "Reed",
       "phone": "(555) 987-1212",
       "email": "marcus.reed@northwind.com",
-      "address": "88 Pine Avenue, Austin. TX 73301. USA.",
+      "address": "88 Pine Avenue, Austin, TX 73301. USA.",
       "businessName": "Northwind Ventures",
       "streetAddress": "88 Pine Avenue",
       "city": "Austin",
       "country": "United States",
       "preferredMake": ["ford"],
       "budget": "10kto25k",
-      "owner": { "id": 2, "name": "Aria Chen" },
-      "followers": [{ "id": 3, "name": "Carl" }],
-      "tags": ["Lead", "Hot"],
-      "notes": [
-        {
-          "id": "n2-1",
-          "body": "Marcus confirmed interest in fleet pricing for 5 vehicles. Follow up with volume discount sheet by end of week.",
-          "createdAt": "2026-05-20T10:00:00.000Z",
-          "author": "Aria"
-        },
-        {
-          "id": "n2-2",
-          "body": "Legal review of contract in progress. Expects sign-off by next Tuesday. CC procurement lead on all future emails.",
-          "createdAt": "2026-05-20T14:30:00.000Z",
-          "author": "Aria"
-        }
-      ],
-      "conversations": [
-        {
-          "id": "c2-1",
-          "type": "email",
-          "direction": "inbound",
-          "subject": "Fleet pricing follow-up for Northwind Ventures",
-          "to": "Me",
-          "body": "Hi team,\n\nFollowing up on the fleet pricing options we discussed last week. Could you share the volume discount sheet for 5+ units?\n\nThanks,\nMarcus",
-          "threadCount": 2,
-          "starred": false,
-          "sender": { "name": "Marcus Reed" },
-          "createdAt": "2026-05-20T10:30:00.000Z"
-        },
-        {
-          "id": "c2-2",
-          "type": "chat",
-          "direction": "inbound",
-          "body": "Got a minute to discuss the contract?",
-          "sender": { "name": "Marcus" },
-          "createdAt": "2026-05-20T15:00:00.000Z"
-        }
-      ]
+      "owner": "Aria Chen",
+      "followers": ["Carl"],
+      "tags": ["Lead", "Hot"]
     },
     {
       "id": 3,
@@ -135,37 +40,16 @@
       "lastName": "Patel",
       "phone": "(555) 222-3344",
       "email": "sara.patel@brightlabs.io",
-      "address": "12 Ocean View, San Diego. CA 92101. USA.",
+      "address": "12 Ocean View, San Diego, CA 92101. USA.",
       "businessName": "Bright Labs",
       "streetAddress": "12 Ocean View",
       "city": "San Diego",
       "country": "United States",
       "preferredMake": ["bmw"],
       "budget": "50kplus",
-      "owner": { "id": 3, "name": "Jordan Lee" },
+      "owner": "Jordan Lee",
       "followers": [],
-      "tags": ["Enterprise"],
-      "notes": [
-        {
-          "id": "n3-1",
-          "body": "Sara requested a demo of the enterprise dashboard. Scheduled for next Wednesday 2PM PST. Send calendar invite to her and her CTO.",
-          "createdAt": "2026-05-19T09:00:00.000Z",
-          "author": "Jordan"
-        }
-      ],
-      "conversations": [
-        {
-          "id": "c3-1",
-          "type": "email",
-          "direction": "inbound",
-          "subject": "Demo request for the enterprise dashboard",
-          "to": "Me",
-          "body": "Hi,\n\nWould love to see a demo of the enterprise dashboard. Wednesday 2PM PST works for our team. Please include our CTO on the invite.\n\nBest,\nSara",
-          "starred": true,
-          "sender": { "name": "Sara Patel" },
-          "createdAt": "2026-05-19T09:00:00.000Z"
-        }
-      ]
+      "tags": ["Enterprise"]
     },
     {
       "id": 4,
@@ -173,18 +57,16 @@
       "lastName": "Kim",
       "phone": "(555) 765-9911",
       "email": "daniel.kim@acme.co",
-      "address": "501 Birch Lane, Seattle. WA 98101. USA.",
+      "address": "501 Birch Lane, Seattle, WA 98101. USA.",
       "businessName": "Acme Co",
       "streetAddress": "501 Birch Lane",
       "city": "Seattle",
       "country": "United States",
       "preferredMake": ["honda"],
       "budget": "under10k",
-      "owner": { "id": 1, "name": "Devon Lane" },
-      "followers": [{ "id": 4, "name": "Eli" }],
-      "tags": ["Shared Contact"],
-      "notes": [],
-      "conversations": []
+      "owner": "Devon Lane",
+      "followers": ["Eli"],
+      "tags": ["Shared Contact"]
     }
   ]
 }

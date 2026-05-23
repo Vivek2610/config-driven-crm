@@ -2,13 +2,12 @@ import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { memo } from 'react';
 
 import { NavBar } from '@/components/layout';
-import { useUiLayout } from '@/context';
+import { useLayoutRenderer, useUiLayout } from '@/hooks';
 import type { LayoutDefinition, LayoutSection } from '@/types';
 
 import { MobileBottomNav } from './MobileBottomNav';
 import { ResponsiveDrawer } from './ResponsiveDrawer';
 import { SectionRenderer } from './SectionRenderer';
-import { useLayoutRenderer } from './useLayoutRenderer';
 
 interface PageLayoutProps {
   config: LayoutDefinition;

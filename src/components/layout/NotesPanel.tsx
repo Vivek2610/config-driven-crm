@@ -1,3 +1,4 @@
+import { Plus, X } from 'lucide-react';
 import { memo, useRef, useState } from 'react';
 
 import { NotesList } from '@/components/notes';
@@ -49,9 +50,7 @@ export const NotesPanel = memo(({ onClose, hideCloseButton }: NotesPanelProps = 
             className="inline-flex items-center gap-1 rounded-md px-2 py-1 text-xs font-semibold text-slate-600 transition hover:bg-slate-100"
             title="Add note"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="h-3.5 w-3.5">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-            </svg>
+            <Plus className="h-3.5 w-3.5" strokeWidth={2} />
             Add
           </button>
           {!hideCloseButton && (
@@ -63,9 +62,7 @@ export const NotesPanel = memo(({ onClose, hideCloseButton }: NotesPanelProps = 
                 className="rounded-md p-1 text-slate-400 transition hover:bg-slate-100 hover:text-slate-700"
                 title="Close notes panel"
               >
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="h-4 w-4">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
-                </svg>
+                <X className="h-4 w-4" strokeWidth={2} />
               </button>
             </>
           )}

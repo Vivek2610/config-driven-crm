@@ -1,3 +1,4 @@
+import { EllipsisVertical, Maximize2, Reply, Star } from 'lucide-react';
 import { memo, useEffect, useRef, useState } from 'react';
 
 import { useCrm } from '@/context';
@@ -49,9 +50,7 @@ export const EmailCard = memo(({ email }: EmailCardProps) => {
             title="Expand email"
             className="shrink-0 rounded-md p-1 text-slate-400 transition hover:bg-slate-100 hover:text-slate-700"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.8} stroke="currentColor" className="h-4 w-4">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 3.75v4.5m0-4.5h4.5m-4.5 0L9 9M3.75 20.25v-4.5m0 4.5h4.5m-4.5 0L9 15M20.25 3.75h-4.5m4.5 0v4.5m0-4.5L15 9m5.25 11.25h-4.5m4.5 0v-4.5m0 4.5L15 15" />
-            </svg>
+            <Maximize2 className="h-4 w-4" strokeWidth={1.8} />
           </button>
         </header>
 
@@ -87,14 +86,14 @@ export const EmailCard = memo(({ email }: EmailCardProps) => {
               title={email.starred ? 'Starred' : 'Star'}
               className={email.starred ? 'text-amber-400' : 'text-slate-300 hover:text-amber-400'}
             >
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4">
-                <path d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.32.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .32-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z" />
-              </svg>
+              <Star
+                className="h-4 w-4"
+                fill={email.starred ? 'currentColor' : 'none'}
+                strokeWidth={1.8}
+              />
             </button>
             <button type="button" title="Reply" className="text-slate-400 hover:text-slate-700">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.8} stroke="currentColor" className="h-4 w-4">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M9 15 3 9m0 0 6-6M3 9h12a6 6 0 0 1 0 12h-3" />
-              </svg>
+              <Reply className="h-4 w-4" strokeWidth={1.8} />
             </button>
             <div className="relative" ref={menuRef}>
               <button
@@ -103,9 +102,7 @@ export const EmailCard = memo(({ email }: EmailCardProps) => {
                 title="More"
                 className="rounded-md p-0.5 text-slate-400 transition hover:bg-slate-100 hover:text-slate-700"
               >
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="h-4 w-4">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 12.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 18.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5Z" />
-                </svg>
+                <EllipsisVertical className="h-4 w-4" strokeWidth={2} />
               </button>
               {showMenu && (
                 <ul className="absolute right-0 z-20 mt-1 w-36 overflow-hidden rounded-lg border border-slate-200 bg-white py-1 text-sm shadow-lg">
@@ -143,9 +140,7 @@ export const EmailCard = memo(({ email }: EmailCardProps) => {
             type="button"
             className="inline-flex items-center gap-1.5 rounded-md bg-blue-600 px-3 py-1.5 text-xs font-semibold text-white transition hover:bg-blue-700"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="h-3.5 w-3.5">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M9 15 3 9m0 0 6-6M3 9h12a6 6 0 0 1 0 12h-3" />
-            </svg>
+            <Reply className="h-3.5 w-3.5" strokeWidth={2} />
             Reply
           </button>
         </div>

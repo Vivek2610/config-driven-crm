@@ -161,7 +161,7 @@ export interface Note {
 }
 
 export interface NotesConfig {
-  notes: Note[];
+  notesByContactId: Record<string, Note[]>;
 }
 
 // Conversation discriminated union: emails are cards, chats are bubbles.
@@ -199,5 +199,5 @@ export interface ChatConversation extends ConversationBase {
 export type Conversation = EmailConversation | ChatConversation;
 
 export interface ConversationsConfig {
-  conversations: Conversation[];
+  conversationsByContactId: Record<string, Conversation[]>;
 }

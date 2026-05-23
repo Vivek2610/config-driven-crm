@@ -1,6 +1,5 @@
 import { useMemo } from 'react';
 
-import { useUiLayout } from '@/context';
 import type {
   DesktopLayoutConfig,
   DrawerConfig,
@@ -11,19 +10,17 @@ import type {
   TabletLayoutConfig,
 } from '@/types';
 
+import { useUiLayout } from './useUiLayout';
+
 export interface ResolvedLayout {
   mode: LayoutMode;
   containerType: 'flex' | 'grid' | 'stack';
   navPosition: 'right' | 'left' | 'bottom' | 'top' | 'hidden';
   defaultSection?: string;
   drawer?: DrawerConfig;
-  // Sections that participate in the inline flex/stack layout for the current mode.
   inlineSections: LayoutSection[];
-  // All sections defined for the current mode regardless of mode (inline/drawer/page).
   allSections: LayoutSection[];
-  // Sections marked `mode: drawer` for the current mode.
   drawerSections: LayoutSection[];
-  // Sections marked `mode: page` for mobile stack mode.
   pageSections: LayoutSection[];
 }
 
@@ -39,9 +36,6 @@ const pickModeConfig = (
   return config.desktop;
 };
 
-// Reads the raw layout.json + current viewport mode and returns a normalized,
-// memoized view that PageLayout can render directly. Preserves order, splits
-// sections by render mode (inline / drawer / page), and merges defaults.
 export const useLayoutRenderer = (config: LayoutDefinition): ResolvedLayout => {
   const { layoutMode } = useUiLayout();
 

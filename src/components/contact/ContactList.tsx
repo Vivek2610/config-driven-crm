@@ -1,3 +1,4 @@
+import { Plus, Search } from 'lucide-react';
 import { memo, useMemo, useState } from 'react';
 
 import { useCrm } from '@/context';
@@ -33,18 +34,14 @@ export const ContactList = memo(() => {
           onClick={() => setShowAdd(true)}
           className="inline-flex items-center gap-1 rounded-md bg-blue-600 px-2.5 py-1 text-xs font-semibold text-white transition hover:bg-blue-700"
         >
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="h-3.5 w-3.5">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-          </svg>
+          <Plus className="h-3.5 w-3.5" strokeWidth={2} />
           Add
         </button>
       </header>
 
       <div className="my-3">
         <div className="flex items-center gap-2 rounded-lg border border-slate-200 bg-white px-3 py-2 focus-within:border-blue-400">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.8} stroke="currentColor" className="h-4 w-4 text-slate-400">
-            <path strokeLinecap="round" strokeLinejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
-          </svg>
+          <Search className="h-4 w-4 text-slate-400" strokeWidth={1.8} />
           <input
             type="text"
             value={search}

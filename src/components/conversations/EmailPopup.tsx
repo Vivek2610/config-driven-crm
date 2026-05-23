@@ -1,3 +1,4 @@
+import { Reply, X } from 'lucide-react';
 import { memo, useEffect } from 'react';
 
 import { useCrm } from '@/context';
@@ -46,9 +47,7 @@ export const EmailPopup = memo(({ email, onClose }: EmailPopupProps) => {
             className="rounded-md p-1 text-slate-500 transition hover:bg-slate-100 hover:text-slate-700"
             title="Close"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="h-4 w-4">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
-            </svg>
+            <X className="h-4 w-4" strokeWidth={2} />
           </button>
         </header>
 
@@ -90,9 +89,7 @@ export const EmailPopup = memo(({ email, onClose }: EmailPopupProps) => {
             type="button"
             className="inline-flex items-center gap-1.5 rounded-md bg-blue-600 px-3 py-1.5 text-xs font-semibold text-white hover:bg-blue-700"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="h-3.5 w-3.5">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M9 15 3 9m0 0 6-6M3 9h12a6 6 0 0 1 0 12h-3" />
-            </svg>
+            <Reply className="h-3.5 w-3.5" strokeWidth={2} />
             Reply
           </button>
         </footer>
