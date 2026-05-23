@@ -11,18 +11,13 @@ import { layout as layoutConfig } from '@/configs';
 import type { LayoutMode } from '@/types';
 
 // Global UI-layout state — kept separate from CRM domain state.
-// Owns: layout mode, notes drawer/panel state, active mobile section,
-// sidebar collapsed state (future-ready).
 interface UiLayoutContextValue {
   layoutMode: LayoutMode;
   notesOpen: boolean;
   toggleNotes: () => void;
-  openNotes: () => void;
   closeNotes: () => void;
   mobileSection: string;
   setMobileSection: (id: string) => void;
-  sidebarCollapsed: boolean;
-  toggleSidebar: () => void;
 }
 
 const UiLayoutContext = createContext<UiLayoutContextValue | undefined>(undefined);
@@ -48,7 +43,6 @@ export const UiLayoutProvider = ({ children }: UiLayoutProviderProps) => {
   const [mobileSection, setMobileSection] = useState<string>(
     layoutConfig.mobile.defaultSection,
   );
-  const [sidebarCollapsed, setSidebarCollapsed] = useState<boolean>(false);
 
   // Re-evaluate layout mode whenever the viewport crosses a breakpoint.
   useEffect(() => {
@@ -65,32 +59,18 @@ export const UiLayoutProvider = ({ children }: UiLayoutProviderProps) => {
   }, [layoutMode]);
 
   const toggleNotes = useCallback(() => setNotesOpen((prev) => !prev), []);
-  const openNotes = useCallback(() => setNotesOpen(true), []);
   const closeNotes = useCallback(() => setNotesOpen(false), []);
-  const toggleSidebar = useCallback(() => setSidebarCollapsed((p) => !p), []);
 
   const value = useMemo<UiLayoutContextValue>(
     () => ({
       layoutMode,
       notesOpen,
       toggleNotes,
-      openNotes,
       closeNotes,
       mobileSection,
       setMobileSection,
-      sidebarCollapsed,
-      toggleSidebar,
     }),
-    [
-      layoutMode,
-      notesOpen,
-      toggleNotes,
-      openNotes,
-      closeNotes,
-      mobileSection,
-      sidebarCollapsed,
-      toggleSidebar,
-    ],
+    [layoutMode, notesOpen, toggleNotes, closeNotes, mobileSection],
   );
 
   return <UiLayoutContext.Provider value={value}>{children}</UiLayoutContext.Provider>;

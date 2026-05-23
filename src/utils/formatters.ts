@@ -1,34 +1,4 @@
-import type { ContactFieldOption, ContactValue } from '@/types';
-
 // Shared text formatting helpers to keep presentational components small.
-export const formatValue = (
-  value: ContactValue,
-  options?: ContactFieldOption[],
-): string => {
-  if (value === null || value === undefined || value === '') return 'Not provided';
-
-  if (Array.isArray(value)) {
-    if (!options?.length) return value.join(', ');
-    return value
-      .map((entry) => options.find((option) => option.value === entry)?.label ?? entry)
-      .join(', ');
-  }
-
-  if (typeof value === 'number') return String(value);
-
-  if (!options?.length) return value;
-
-  return options.find((option) => option.value === value)?.label ?? value;
-};
-
-export const formatTimestamp = (isoDate: string): string =>
-  new Intl.DateTimeFormat('en-US', {
-    month: 'short',
-    day: 'numeric',
-    year: 'numeric',
-  }).format(new Date(isoDate));
-
-// Returns relative time string e.g. "5 min ago", "2 hours ago".
 export const formatRelativeTime = (isoDate: string): string => {
   const diffMs = Date.now() - new Date(isoDate).getTime();
   const diffMins = Math.floor(diffMs / 60_000);

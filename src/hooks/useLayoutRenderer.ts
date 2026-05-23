@@ -19,7 +19,6 @@ export interface ResolvedLayout {
   defaultSection?: string;
   drawer?: DrawerConfig;
   inlineSections: LayoutSection[];
-  allSections: LayoutSection[];
   drawerSections: LayoutSection[];
   pageSections: LayoutSection[];
 }
@@ -41,13 +40,11 @@ export const useLayoutRenderer = (config: LayoutDefinition): ResolvedLayout => {
 
   return useMemo(() => {
     const modeConfig = pickModeConfig(config, layoutMode);
-    const allSections = sortByOrder(modeConfig.sections).filter(
-      (s) => s.visible !== false,
-    );
+    const sections = sortByOrder(modeConfig.sections).filter((s) => s.visible !== false);
 
-    const inlineSections = allSections.filter((s) => (s.mode ?? 'inline') === 'inline');
-    const drawerSections = allSections.filter((s) => s.mode === 'drawer');
-    const pageSections = allSections.filter((s) => s.mode === 'page');
+    const inlineSections = sections.filter((s) => (s.mode ?? 'inline') === 'inline');
+    const drawerSections = sections.filter((s) => s.mode === 'drawer');
+    const pageSections = sections.filter((s) => s.mode === 'page');
 
     const defaultSection =
       'defaultSection' in modeConfig ? modeConfig.defaultSection : undefined;
@@ -59,7 +56,6 @@ export const useLayoutRenderer = (config: LayoutDefinition): ResolvedLayout => {
       defaultSection,
       drawer: modeConfig.drawer,
       inlineSections,
-      allSections,
       drawerSections,
       pageSections,
     };

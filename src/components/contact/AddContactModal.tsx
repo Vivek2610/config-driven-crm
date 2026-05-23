@@ -1,9 +1,8 @@
 import { X } from 'lucide-react';
-import { memo, useEffect, useMemo, useState, type FormEvent } from 'react';
+import { memo, useMemo, useState, type FormEvent } from 'react';
 
 import { useCrm } from '@/context';
-import { crmApi } from '@/services';
-import type { ContactField, ContactFieldsConfig, ContactRecord } from '@/types';
+import type { ContactField, ContactRecord } from '@/types';
 import { validateContactField } from '@/utils';
 
 interface AddContactModalProps {
@@ -13,19 +12,14 @@ interface AddContactModalProps {
 // Modal that dynamically generates form fields from contactFields.json.
 // Editing/Saving is config-driven: no hardcoded form fields here.
 export const AddContactModal = memo(({ onClose }: AddContactModalProps) => {
-  const { addContact, setViewMode } = useCrm();
+  const { addContact, setViewMode, fieldsConfig } = useCrm();
 
-  const [fieldsConfig, setFieldsConfig] = useState<ContactFieldsConfig | null>(null);
   const [values, setValues] = useState<Record<string, string>>({});
   const [errors, setErrors] = useState<Record<string, string>>({});
 
-  useEffect(() => {
-    void crmApi.getContactFields().then(setFieldsConfig);
-  }, []);
-
   const allFields: ContactField[] = useMemo(
-    () => fieldsConfig?.folders.flatMap((folder) => folder.fields) ?? [],
-    [fieldsConfig],
+    () => fieldsConfig.folders.flatMap((folder) => folder.fields),
+    [fieldsConfig.folders],
   );
 
   const handleChange = (key: string, value: string) => {
@@ -73,7 +67,7 @@ export const AddContactModal = memo(({ onClose }: AddContactModalProps) => {
           </button>
         </header>
 
-        <form onSubmit={handleSubmit} className="max-h-[60vh] space-y-3 overflow-y-auto px-5 py-4">
+        <form id="add-contact-form" onSubmit={handleSubmit} className="max-h-[60vh] space-y-3 overflow-y-auto px-5 py-4">
           {allFields.map((field) => (
             <div key={field.key} className="space-y-1">
               <label className="block text-xs font-medium text-slate-600" htmlFor={`add-${field.key}`}>
@@ -127,7 +121,7 @@ export const AddContactModal = memo(({ onClose }: AddContactModalProps) => {
           </button>
           <button
             type="submit"
-            onClick={handleSubmit}
+            form="add-contact-form"
             className="rounded-md bg-blue-600 px-3 py-1.5 text-xs font-semibold text-white hover:bg-blue-700"
           >
             Save Contact
