@@ -10,6 +10,7 @@ import type {
 } from '@/types';
 
 import { EditableContactField } from './EditableContactField';
+import { AddContactModal } from './AddContactModal';
 
 interface ContactFolderProps {
   folder: ContactFolderModel;
@@ -25,6 +26,7 @@ export const ContactFolder = memo(({ folder, fields, contact }: ContactFolderPro
   // Pending edits for this folder — committed to context only on Save.
   const [pendingEdits, setPendingEdits] = useState<Record<string, ContactValue>>({});
   const [editing, setEditing] = useState(false);
+  const [showAddModal, setShowAddModal] = useState(false);
 
   if (!fields.length) return null;
 
@@ -45,6 +47,11 @@ export const ContactFolder = memo(({ folder, fields, contact }: ContactFolderPro
     setEditing(false);
   };
 
+  const handleStartEdit = () => {
+    if (!isOpen) toggleFolder(folder.id);
+    setEditing(true);
+  };
+
   // When reading a field value, prefer the local pending edit over the saved value.
   const getFieldValue = (key: string): ContactValue =>
     key in pendingEdits
@@ -62,9 +69,9 @@ export const ContactFolder = memo(({ folder, fields, contact }: ContactFolderPro
               {folder.addable && (
                 <button
                   type="button"
-                  onClick={() => setEditing(true)}
-                  title={`Add to ${folder.name}`}
-                  aria-label={`Add to ${folder.name}`}
+                  onClick={() => setShowAddModal(true)}
+                  title="Add contact"
+                  aria-label="Add contact"
                   className="rounded-md p-1 text-blue-600 transition hover:bg-blue-50"
                 >
                   <Plus className="h-4 w-4" strokeWidth={2} />
@@ -74,7 +81,7 @@ export const ContactFolder = memo(({ folder, fields, contact }: ContactFolderPro
               {/* Edit — pencil icon only */}
               <button
                 type="button"
-                onClick={() => setEditing(true)}
+                onClick={handleStartEdit}
                 title="Edit fields"
                 aria-label="Edit fields"
                 className="rounded-md p-1 text-slate-500 transition hover:bg-slate-100 hover:text-slate-700"
@@ -151,6 +158,7 @@ export const ContactFolder = memo(({ folder, fields, contact }: ContactFolderPro
           </div>
         </div>
       </div>
+      {showAddModal && <AddContactModal onClose={() => setShowAddModal(false)} />}
     </section>
   );
 });

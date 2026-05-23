@@ -4,6 +4,7 @@ import { memo, useEffect, useMemo, useState, type FormEvent } from 'react';
 import { useCrm } from '@/context';
 import { crmApi } from '@/services';
 import type { ContactField, ContactFieldsConfig, ContactRecord } from '@/types';
+import { validateContactField } from '@/utils';
 
 interface AddContactModalProps {
   onClose: () => void;
@@ -16,6 +17,7 @@ export const AddContactModal = memo(({ onClose }: AddContactModalProps) => {
 
   const [fieldsConfig, setFieldsConfig] = useState<ContactFieldsConfig | null>(null);
   const [values, setValues] = useState<Record<string, string>>({});
+  const [errors, setErrors] = useState<Record<string, string>>({});
 
   useEffect(() => {
     void crmApi.getContactFields().then(setFieldsConfig);
@@ -28,10 +30,29 @@ export const AddContactModal = memo(({ onClose }: AddContactModalProps) => {
 
   const handleChange = (key: string, value: string) => {
     setValues((prev) => ({ ...prev, [key]: value }));
+    setErrors((prev) => {
+      if (!prev[key]) return prev;
+      const next = { ...prev };
+      delete next[key];
+      return next;
+    });
   };
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
+
+    const nextErrors = allFields.reduce<Record<string, string>>((acc, field) => {
+      if (field.type === 'multiSelect' || field.type === 'radio') return acc;
+      const err = validateContactField(field.type, values[field.key] ?? '');
+      if (err) acc[field.key] = err;
+      return acc;
+    }, {});
+
+    if (Object.keys(nextErrors).length) {
+      setErrors(nextErrors);
+      return;
+    }
+
     const newContact = { ...values } as Partial<ContactRecord> as Omit<ContactRecord, 'id'>;
     addContact(newContact);
     setViewMode('detail');
@@ -73,14 +94,24 @@ export const AddContactModal = memo(({ onClose }: AddContactModalProps) => {
                   ))}
                 </select>
               ) : (
-                <input
-                  id={`add-${field.key}`}
-                  type={field.type === 'email' ? 'email' : field.type === 'phone' ? 'tel' : 'text'}
-                  placeholder={field.placeholder}
-                  value={values[field.key] ?? ''}
-                  onChange={(e) => handleChange(field.key, e.target.value)}
-                  className="w-full rounded-md border border-slate-200 bg-white px-2.5 py-1.5 text-sm text-slate-900 outline-none focus:border-blue-400"
-                />
+                <>
+                  <input
+                    id={`add-${field.key}`}
+                    type={field.type === 'email' ? 'email' : field.type === 'phone' ? 'tel' : 'text'}
+                    placeholder={field.placeholder}
+                    value={values[field.key] ?? ''}
+                    onChange={(e) => handleChange(field.key, e.target.value)}
+                    className={[
+                      'w-full rounded-md border bg-white px-2.5 py-1.5 text-sm text-slate-900 outline-none',
+                      errors[field.key]
+                        ? 'border-red-400 focus:border-red-400 focus:ring-1 focus:ring-red-300'
+                        : 'border-slate-200 focus:border-blue-400',
+                    ].join(' ')}
+                  />
+                  {errors[field.key] && (
+                    <p className="text-xs text-red-500">{errors[field.key]}</p>
+                  )}
+                </>
               )}
             </div>
           ))}

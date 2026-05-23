@@ -1,7 +1,8 @@
-import { Pencil } from 'lucide-react';
+import { Check, Pencil, X } from 'lucide-react';
 import { memo, useRef, useState, type KeyboardEvent } from 'react';
 
 import type { ContactField, ContactValue } from '@/types';
+import { validateContactField } from '@/utils';
 
 interface EditableContactFieldProps {
   field: ContactField;
@@ -9,15 +10,6 @@ interface EditableContactFieldProps {
   /** Called with the new string/array value when the user saves. */
   onSave: (key: string, newValue: ContactValue) => void;
 }
-
-const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-// Validates a field value. Returns an error string or null.
-const validate = (type: ContactField['type'], val: string): string | null => {
-  if (type === 'email' && val && !EMAIL_RE.test(val))
-    return 'Please enter a valid email address.';
-  return null;
-};
 
 // Inline editable field — displays read view by default; switches to input on click.
 export const EditableContactField = memo(
@@ -42,7 +34,7 @@ export const EditableContactField = memo(
     };
 
     const handleSave = () => {
-      const err = validate(field.type, draft);
+      const err = validateContactField(field.type, draft);
       if (err) { setError(err); return; }
       onSave(field.key, draft);
       setEditing(false);
@@ -59,6 +51,29 @@ export const EditableContactField = memo(
       if (e.key === 'Enter' && field.type !== 'address') handleSave();
       if (e.key === 'Escape') handleCancel();
     };
+
+    const editActions = (
+      <div className="flex shrink-0 items-center justify-end gap-1">
+        <button
+          type="button"
+          onClick={handleSave}
+          title="Save"
+          aria-label="Save"
+          className="flex h-7 w-7 items-center justify-center rounded-md bg-blue-600 text-white transition hover:bg-blue-700"
+        >
+          <Check className="h-4 w-4" strokeWidth={2.5} />
+        </button>
+        <button
+          type="button"
+          onClick={handleCancel}
+          title="Cancel"
+          aria-label="Cancel"
+          className="flex h-7 w-7 items-center justify-center rounded-md border border-slate-300 bg-slate-50 text-slate-700 transition hover:bg-slate-100"
+        >
+          <X className="h-4 w-4" strokeWidth={2} />
+        </button>
+      </div>
+    );
 
     return (
       <div className="group space-y-0.5">
@@ -108,22 +123,7 @@ export const EditableContactField = memo(
 
             {error && <p className="text-xs text-red-500">{error}</p>}
 
-            <div className="flex items-center gap-1.5">
-              <button
-                type="button"
-                onClick={handleSave}
-                className="rounded-md bg-blue-600 px-2.5 py-1 text-xs font-semibold text-white hover:bg-blue-700"
-              >
-                Save
-              </button>
-              <button
-                type="button"
-                onClick={handleCancel}
-                className="rounded-md border border-slate-200 bg-white px-2.5 py-1 text-xs font-semibold text-slate-600 hover:bg-slate-50"
-              >
-                Cancel
-              </button>
-            </div>
+            {editActions}
           </div>
         ) : (
           <p

@@ -26,7 +26,6 @@ A **config-driven CRM starter** built with React, TypeScript, and Vite. Contact 
 13. [Field Renderer System](#field-renderer-system)
 14. [Project Structure](#project-structure)
 15. [Key Design Principles](#key-design-principles)
-16. [Planned Enhancements](#planned-enhancements)
 
 ---
 
@@ -1270,21 +1269,6 @@ Path aliases: `@/` maps to `src/`.
 6. **Extensible section registry** — New panels = one registry entry + one config block.
 7. **Per-contact scoping** — Notes and conversations keyed by contact ID; switching contacts updates all panels.
 8. **Runtime mutations in memory** — Add note, send message, edit contact update React state, not JSON files.
-
----
-
-## Planned Enhancements
-
-- [ ] Replace mock API with real backend integration
-- [ ] Persist runtime mutations back to API / database
-- [ ] Layout switching from user preferences (alternate `layout.json` profiles)
-- [ ] Sidebar collapse on tablet (wire `sidebarCollapsed` from `UiLayoutContext`)
-- [ ] Permission-based layout visibility rules in `useLayoutRenderer`
-- [ ] Caching for frequently opened contacts
-- [ ] Permission-based field visibility rules
-- [ ] AI text modification in conversation composer
-- [ ] DND and Actions tab content
-- [ ] Wire NavBar placeholders (History, Network, Tasks, Calendar) to real pages
 
 ---
 
